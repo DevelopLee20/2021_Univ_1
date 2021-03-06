@@ -1,7 +1,7 @@
 public class week1_6{
 	public static void main(String[] args) {
-		float pi = 3.0F;
-		float four = 4.0F;
+		double pi = 3.0;
+		double four = 4.0;
 		int i = 0;
 		int count = 0;
 		
