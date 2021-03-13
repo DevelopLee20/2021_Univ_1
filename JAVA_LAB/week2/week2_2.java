@@ -12,6 +12,7 @@ public class week2_2{
 		int charge = money - good_price;
 		System.out.println("거스름 돈: "+charge);
 		
+		// change와 500을 나눈 몫은 500원의 개수, 500으로 나눈 나머지를 100으로 나눈 값은 100원의 개수
 		System.out.println("500원 동전의 개수: "+(int)charge/500);
 		System.out.println("100원 동전의 개수: "+(int)charge%500/100);
 		

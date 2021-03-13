@@ -1,5 +1,7 @@
 import java.util.*;
 
+// 정렬 알고리즘
+// 버블 정렬 사용
 class Glass{
 	
 	void array(int a, int b, int c) {
@@ -25,7 +27,7 @@ public class week2_1{
 	public static void main(String[] args) {
 		int a, b, c;
 		Scanner sc = new Scanner(System.in);
-		Glass obj = new Glass();
+		Glass obj = new Glass(); // 클래스 객체 생성
 		
 		System.out.print("정수를 입력하시오: ");
 		a = sc.nextInt();
@@ -36,7 +38,7 @@ public class week2_1{
 		System.out.print("정수를 입력하시오: ");
 		c = sc.nextInt();
 		
-		obj.array(a, b, c);
+		obj.array(a, b, c); // 버블정렬 메소드 사용
 		
 		sc.close();
 	}
