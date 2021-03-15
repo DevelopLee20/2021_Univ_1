@@ -9,9 +9,9 @@ int main(void){
         printf("%d번째 수: ",i+1);
         scanf("%d",&num);
         if (num%2==0)
-            div_two += num;
+            div_two += 1;
         else
-            none_div_two += num;
+            none_div_two += 1;
     }
 
     printf("짝수의 합: %d\n",div_two);
