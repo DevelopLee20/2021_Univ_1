@@ -2,11 +2,13 @@ import java.util.*;
 
 public class week3_2{
 	public static void main(String[] args) {
+		// scanner 객체를 sc 변수에 생성한다.
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("정수를 입력하세요: ");
 		int num = sc.nextInt();
 		
+		// 입력받은 num 변수를 기준으로 switch case 사용
 		switch(num) {
 		case 1:
 			System.out.println("ONE");
@@ -35,6 +37,8 @@ public class week3_2{
 		case 9:
 			System.out.println("NINE");
 			break;
+		
+		// case가 없는 경우 default 문이 실행된다.
 		default:
 			System.out.println("OTHER");
 			break;
