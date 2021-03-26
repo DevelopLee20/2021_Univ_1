@@ -1,0 +1,56 @@
+1. Hanoi Tower 문제를 기술하라.
+
+ 3개의 기둥에 쌓여 있는 크기가 다른 원판을 끝에서 끝으로 모두 옮기는 문제이다. 단 큰 원판은 작은 원판의 위로 갈 수 없다.
+또한 한 번에 한 개의 원판만 이동 가능하다.
+
+2. 스마트폰에 Hanoi Tower 어플을 설치하라.
+
+넵
+
+3. Hanoi Tower 어플에서 원판의 개수를 4로 설정하고, 게임을 수행하라. 게임이 종료되었을 때 원판을 옮긴 회수는 몇 번 인가?
+
+2^4 - 1 = 15 최소 횟수
+
+4. 원판의 개수를 5로 설정하고, 게임을 수행하고, 게임 종료시에 원판을 옮기 회수는 몇 번인가?
+
+2^5 - 1 = 31 최소 회수
+
+5. Hanoi 문제에서 원판을 다론 곳으로 이동하는 최소 횟수를 구하는 알고리즘을 작성하라.
+
+2^n -1
+
+hanoi_tower(n,A,B,C){
+    if n == 1:
+        move(A, C)
+        return
+    honoi_tower(n - 1, A, B, C)
+    print(A, C)
+    hanoi_tower(n - 1, B, C, A)
+}
+
+6.
+
+typedef struct
+{
+	int degree;
+	int coef[최고차항];
+}poly;
+
+poly_add(p,q){
+    poly r;
+
+    r.degree = p.degree > q.degree
+    r.dgree = dp > dp ? dp : dq
+    ip = 0; iq = 0; ir = 0;
+
+    while dp >= 0  and dq >= do
+        if dp = dq then
+            r.coef[ir++] <- p.coef[ip++]
+            dp--; dq--;
+        else if ....
+        end if
+      repeat
+    end while
+
+    return r;
+}

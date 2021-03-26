@@ -7,5 +7,5 @@ typedef struct Person
 }poly;
 
 int main(void){
-    
+    poly p,q;
 }
