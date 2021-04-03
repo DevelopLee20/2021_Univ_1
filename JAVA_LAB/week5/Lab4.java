@@ -31,8 +31,9 @@ public class Lab4 {
         // Complex 객체를 생성
         Complex cp1 = new Complex(10,20);
         Complex cp2 = new Complex(30,40);
-        Complex cp = new Complex(0,0);
-        Complex cp3 = cp.add(cp1,cp2);
+
+        // 두 객체를 더한 후 객체를 리턴한다
+        Complex cp3 = cp1.add(cp1,cp2);
         
         // 생성된 cp3 객체에 두 객체의 속성값의 합을 구해준다
 
