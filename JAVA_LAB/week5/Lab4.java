@@ -1,5 +1,6 @@
 // 패키지명 작성
 package JAVA_LAB.week5;
+// Scanner 사용을 위한 라이브러리
 import java.util.*;
 
 // Complex 클래스 작성
@@ -29,9 +30,10 @@ class Complex{
 public class Lab4 {
     public static void main(String agrs[]){
 
-        // Complex 객체를 생성
+        // Scanner 객체 생성
         Scanner sc = new Scanner(System.in);
 
+        // 2개의 식을 차례로 입력받는다.
         int real1 = sc.nextInt();
         int imag1 = sc.nextInt();
         int real2 = sc.nextInt();
@@ -39,6 +41,7 @@ public class Lab4 {
 
         sc.close();
 
+        // Complex 객체 생성
         Complex cp1 = new Complex(real1,imag1);
         Complex cp2 = new Complex(real2,imag2);
 
