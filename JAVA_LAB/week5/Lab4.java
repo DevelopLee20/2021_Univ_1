@@ -1,5 +1,6 @@
 // 패키지명 작성
 package JAVA_LAB.week5;
+import java.util.*;
 
 // Complex 클래스 작성
 class Complex{
@@ -29,8 +30,17 @@ public class Lab4 {
     public static void main(String agrs[]){
 
         // Complex 객체를 생성
-        Complex cp1 = new Complex(10,20);
-        Complex cp2 = new Complex(30,40);
+        Scanner sc = new Scanner(System.in);
+
+        int real1 = sc.nextInt();
+        int imag1 = sc.nextInt();
+        int real2 = sc.nextInt();
+        int imag2 = sc.nextInt();
+
+        sc.close();
+
+        Complex cp1 = new Complex(real1,imag1);
+        Complex cp2 = new Complex(real2,imag2);
 
         // 두 객체를 더한 후 객체를 리턴한다
         Complex cp3 = cp1.add(cp1,cp2);
