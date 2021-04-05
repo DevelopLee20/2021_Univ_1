@@ -16,11 +16,6 @@ class Complex{
         this.imag = imag;
     }
 
-    // 클래스의 속성을 출력
-    void Print(){
-        System.out.printf("%d+%di",real,imag);
-    }
-
     // 두 개의 Complex 생성된 객체를 받아서 두 객체의 속성값을 더해준다.
     Complex add(Complex o1, Complex o2){
         return new Complex(o1.real+o2.real,o1.imag + o2.imag);
@@ -51,7 +46,7 @@ public class Lab4 {
         // 생성된 cp3 객체에 두 객체의 속성값의 합을 구해준다
 
         // cp3 객체의 속성 값을 출력함
-        cp3.Print();
+        System.out.printf("(%d+%di)와 (%d+%di)를 더하면 (%d+%di)가 됨",cp1.real,cp1.imag,cp2.real,cp2.imag,cp3.real,cp3.imag);
         
     }
 }
