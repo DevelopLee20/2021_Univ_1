@@ -86,9 +86,17 @@ int main(void){
 
     poly r = poly_add(p,q);
 
-    for(int i=0; i<r.num; i++){
-        printf("%.0f ",r.terms[i].coef);
+    int i=0;
+
+    for(i=0; i<r.num; i++){
+        if (r.terms[i].expo == 0){
+            i = i;
+            break;
+        }
+        printf("%.0fx^%d + ",r.terms[i].coef,r.terms[i].expo);
     }
+
+    printf("%.0f",r.terms[i].coef);
 
     return 0;
 }
