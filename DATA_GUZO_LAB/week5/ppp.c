@@ -1,9 +1,7 @@
 #include <stdio.h>
 
-// 1-a. 문제
 #define MAX_TERMS 100
 
-// term의 원소 타입
 typedef struct {
     float coef; // 계수
     int expo; // 차수
@@ -15,27 +13,6 @@ typedef struct{
     // 다항식의 항 개수
     int num;
 } poly;
-
-// // 1-b. 문제
-
-// poly p = {{{8,3},{7,1},{1,0}},3};
-
-// // 1-c. 문제
-
-// int main(void){
-//     printf("%.0f", p.terms[1].coef);
-//     return 0;
-// }
-
-// // 1-d. 문제
-
-poly q = {{{10,5},{2,3},{3,2},{6,1}},4};
-
-// 1-e. 문제
-
-poly r = {{{10,5},{10,3},{3,2},{13,1},{1,0},5}};
-
-// 1-f. 문제
 
 poly poly_add(poly p, poly q){
     poly r;
