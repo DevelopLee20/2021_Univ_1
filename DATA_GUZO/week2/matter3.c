@@ -2,6 +2,7 @@
 #include <string.h>
 
 int main(void){
+    
     float result = 200;
     int garo, sero, cnt;
     char namu;
@@ -14,6 +15,7 @@ int main(void){
         result += 150;
     else if (namu == 'O')
         result += 125;
+        
     result += cnt*30;
     result += result/10;
 
