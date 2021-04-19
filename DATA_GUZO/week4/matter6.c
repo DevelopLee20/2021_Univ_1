@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int isPrime(int n, int num){
-    if (n==num) // n = num 이 되면 소수라고 판단한다.
+    if (n == num) // n = num 이 되면 소수라고 판단한다.
         return 1;
     if(n%num == 0)
         return 0;
