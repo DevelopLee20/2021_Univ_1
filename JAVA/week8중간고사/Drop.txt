@@ -1,0 +1,139 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+class QuizItem{
+
+    String problem;
+    String correnct_ans;
+
+    public QuizItem(String problem, String correnct_ans){
+        this.problem = problem;
+        this.correnct_ans = correnct_ans;
+    }
+}
+
+class Multiple extends QuizItem{
+
+    String problem;
+    String correct_ans;
+    String choice0, choice1, choice2, choice3;
+    String[] choice = new String[4];
+
+    public Multiple(String problem, String correnct_ans, String choice0, String choice1, String choice2, String choice3) {
+        super(problem, correnct_ans);
+        this.choice[0] = choice0;
+        this.choice[1] = choice1;
+        this.choice[2] = choice2;
+        this.choice[3] = choice3;
+    }
+
+    public boolean Answer(String cho){
+        return correct_ans.equals(cho);
+    }
+
+    public void Print(){
+        System.out.println(problem);
+    }
+}
+
+public class Main extends JFrame implements ActionListener{
+
+    private JRadioButton one;
+    private JRadioButton two;
+    private JRadioButton three;
+    private JRadioButton four;
+    private JLabel matter;
+    private JLabel text2 = new JLabel("두번째 줄");
+    private JPanel topPanel = new JPanel();
+    private JPanel midPanel = new JPanel();
+    private JPanel sizePanel = new JPanel();
+    private JButton button = new JButton("OK");
+
+    public Main(Multiple mul){
+
+        setTitle("퀴즈 게임 프로그램");
+        setSize(500,350);
+
+        System.out.println(mul.choice[0]);
+        one = new JRadioButton(mul.choice[0]);
+        two = new JRadioButton(mul.choice[1]);
+        three = new JRadioButton(mul.choice[2]);
+        four = new JRadioButton(mul.choice[3]);
+        matter = new JLabel(mul.problem);
+
+        add(matter, BorderLayout.NORTH);
+        add(text2, BorderLayout.SOUTH);
+
+        add(topPanel);
+        add(midPanel);
+        add(one);
+        add(two);
+        add(three);
+        add(four);
+        add(button);
+
+        ButtonGroup size = new ButtonGroup();
+        size.add(one);
+        size.add(two);
+        size.add(three);
+        size.add(four);
+        size.add(button);
+
+        one.addActionListener(this);
+        two.addActionListener(this);
+        three.addActionListener(this);
+        four.addActionListener(this);
+
+        sizePanel.add(one);
+        sizePanel.add(two);
+        sizePanel.add(three);
+        sizePanel.add(four);
+        sizePanel.add(button);
+
+        add(sizePanel, BorderLayout.CENTER);
+
+        matter.setForeground(Color.blue);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void actionPerformed(ActionEvent e){
+
+        String sm = "Small";
+        
+        if (e.getSource() == one){
+            matter.setText(sm);
+        }
+
+        if (e.getSource() == two){
+            matter.setText(sm);
+        }
+
+        if (e.getSource() == three){
+            matter.setText(sm);
+        }
+    }
+
+    public static void main(String args[]){
+
+        Multiple[] mul = new Multiple[10];
+
+        mul[0] = new Multiple("java 파일을 컴파일하면 생성되는 파일의 확장자명은?", ".class", ".class",".java",".md",".exe");
+        mul[1] = new Multiple("우리가 사용하는 자바 버전은 어떤 것인가?", "Java SE", "Java EE","Java PE","Java ME","Java SE");
+        mul[2] = new Multiple("자바 프로그램을 개발하는데 필요한 도구들은 모아놓은 키트를 무엇이라고 하는가?", "JDK", "JDA","JDK","JJK","SDK");
+        mul[3] = new Multiple("안드로이드 애플리케이션은 ___ 언어로 개발할 수 있다, 틀린 것은?", "HTML", "코틀린","다트","자바","HTML");
+        mul[4] = new Multiple("자바에서 입력을 위하여 사용하는 클래스는?", "Scanner", "Goo","Dart","Swing","Scanner");
+        mul[5] = new Multiple("자바에서 나머지 연산자는?", "%", "%","*","-","+");
+        mul[6] = new Multiple("자바에서 자료형은 기초형과 ___이 있다.", "참조형", "밥형","고급형","기초형","참조형");
+        mul[7] = new Multiple("자바에서 이진수 앞에는 ___를 표시한다.", "0b", "0c","0a","0b","0x");
+        mul[8] = new Multiple("객체들은 ___을 주고 받으면서 상호작용한다.", "메시지", "메시지","상태","밥","언어");
+        mul[9] = new Multiple("자바에서 객체를 생성하는 연산자는 ___이다.", "new", "good","new","obj","int");
+
+        new Main(mul[0]);
+        mul[0].Print();
+    }
+}
