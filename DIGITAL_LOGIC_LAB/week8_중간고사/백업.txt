@@ -1,0 +1,27 @@
+w 4
+x
+y 
+y'
+z'
+xz' 2
+x'z 2 
+xz 3
+xy 3
+x'y
+x'y' 2
+xy'
+y'z'
+yz'
+y'z
+w'x 3
+wx' 2
+w'y'
+wz
+
+w(x'y') + (w'x)z + (w'x)y
+w + xz + xy
+(w'x)y'z' + w(x'y')z
+x + w'y' + yz' + wz
+w + y' + x'z + xz'
+w + x'y + xz + y'z'
+w + y + xz' + x'z
