@@ -74,7 +74,7 @@ int remove_multiples(int num){
     int n_c = 0;                // 고유 숫자의 개수 인덱스 저장 변수
     int checker;                // boolean형처럼 판단할 변수
 
-    stack_type s;
+    stack_type s;   
 
     init(&s);
 
