@@ -1,0 +1,8 @@
+yz' 5
+wz
+wz'
+x'y'
+xz
+xy'
+x'z
+
