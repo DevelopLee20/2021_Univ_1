@@ -67,68 +67,68 @@ char get_token(char *exp){
     return exp[get_index++];
 }
 
-void postifx(char *iexp, char *pexp){
+void postifx(char iexp[], char pexp[]){
 
-    int p_index = 0;
-    char get_c = get_token(iexp);
+    int index = 0;
+    char op = get_token(iexp);
     stack_type s;
 
     init(&s);
 
     do{
-        if (get_c == '+' || get_c == '-'){
+        if (op == '+' || op == '-'){
             if (is_empty(s)){
-                push(&s, get_c);
+                push(&s, op);
             }
             else if(peek(s) == '*' || peek(s) == '/' || peek(s) == '^'){
                 while(!is_empty(s)){
                     if(peek(s) == '*' || peek(s) == '/' || peek(s) == '^'){
-                        pexp[p_index++] = pop(&s);
+                        pexp[index++] = pop(&s);
                     }
                 }
-                push(&s, get_c);
+                push(&s, op);
             }
             else{
-                push(&s, get_c);
+                push(&s, op);
             }
         }
-        else if(get_c == '*' || get_c == '/'){
+        else if(op == '*' || op == '/'){
             if (is_empty(s)){
-                push(&s, get_c);
+                push(&s, op);
             }
             else if(peek(s) == '^'){
                 while(!is_empty(s)){
                     if(peek(s) == '^'){
-                        pexp[p_index++] = pop(&s);
+                        pexp[index++] = pop(&s);
                     }
                 }
-                push(&s, get_c);
+                push(&s, op);
             }
             else{
-                push(&s, get_c);
+                push(&s, op);
             }
         }
-        else if(get_c == '^'){
-            push(&s, get_c);
+        else if(op == '^'){
+            push(&s, op);
         }
-        else if(get_c == '('){
+        else if(op == '('){
         }
-        else if(get_c == ')'){
+        else if(op == ')'){
             while(!is_empty(s)){
-                pexp[p_index++] = pop(&s);
+                pexp[index++] = pop(&s);
             }
         }
         else{
-            pexp[p_index++] = get_c;
+            pexp[index++] = op;
         }
         
-        get_c = get_token(iexp);
-    } while(get_c != '\0');
+        op = get_token(iexp);
+    } while(op != '\0');
 
     while(!is_empty(s)){
-        pexp[p_index++] = pop(&s);
+        pexp[index++] = pop(&s);
     }
-    pexp[p_index] = '\0';
+    pexp[index] = '\0';
 }
 
 int eval(char *pexp){
