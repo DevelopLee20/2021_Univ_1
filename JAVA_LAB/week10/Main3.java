@@ -81,16 +81,22 @@ public class Main3 extends JFrame implements ActionListener{
             case "=":
                 if(token.equals("+")){
                     field.setText("" + (x+y));
+                    x = x+y;
+                    
                 }
                 else if(token.equals("-")){
                     field.setText("" + (x-y));
+                    x = x-y;
                 }
                 else if(token.equals("*")){
                     field.setText("" + (x*y));
+                    x = x*y;
                 }
                 else if(token.equals("/")){
                     field.setText("" + (x/y));
+                    x = x/y;
                 }
+                C_y = true;
                 break;
 
             // 숫자가 입력되면 x에 우선 저장한 후, y에 저장한다.
