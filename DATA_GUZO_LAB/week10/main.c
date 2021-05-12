@@ -11,11 +11,12 @@ typedef struct{
 } QueueType;
 
 int init(QueueType *q){
-    q -> front = 0;
-    q -> rear = 0;
+    q -> front = 0; // front를 0으로 초기화
+    q -> rear = 0;  // rear를 0으로 초기화
 }
 
 int is_empty(QueueType *q){
+    // rear와 front가 같으면 빈 원형 큐
     if (q -> front == q -> rear){
         return 1;
     }
@@ -25,6 +26,7 @@ int is_empty(QueueType *q){
 }
 
 int is_full( QueueType *q ){
+    // rear를 1 더한 후 front와 같으면 꽉찬 원형 큐이다.
     if ((q->rear + 1) % MAX_QUEUE_SIZE == q->front){
         return 1;
     }
@@ -38,6 +40,7 @@ void enqueue(QueueType *q, int item){
         fprintf(stderr, "[enqueue] 에러: 큐가 포화상태입니다.\n");
         return;
     }
+    // rear을 1 더해서 데이터를 저장함
     q -> rear = (q->rear + 1) % MAX_QUEUE_SIZE;
     q -> data[q->rear] = item;
 }
@@ -47,6 +50,7 @@ element dequeue(QueueType *q){
         fprintf(stderr, "[dequeue] 에러: 큐가 공백상태입니다.\n");
         exit(1);
     }
+    // front를 1 더해서 데이터를 출력함
     q -> front = (q->front + 1) % MAX_QUEUE_SIZE;
     return q -> data[q->front];
 }
@@ -60,12 +64,13 @@ element peek(QueueType *q){
 
 void display(QueueType *q){
 
-    int i = q->front+1;
+    int i = q->front+1; // 출력의 시작점을 front+1 로 정함
 
     printf("Queue front = %d, rear = %d\n", q->front, q->rear);
 
     printf("|");
 
+    // rear 까지 출력 할 수 있도록 함
     if (!is_empty(q)){
         i = i % MAX_QUEUE_SIZE;
         while((i) != ((q->rear+1) % MAX_QUEUE_SIZE)){
@@ -76,27 +81,30 @@ void display(QueueType *q){
     printf("\n");
 }
 
-void fibo_que(n){
-    int f0 = 0;
-    int f1 = 1;
-    int i = 0;
+void fibo_que(int n){
+    int f0 = 0; // 시작하는 수
+    int f1 = 1; // 두번째 수
+    int i = 0;  // 인덱스 확인
 
+    QueueType q;    // 스택 생성
+
+    init(&q);       // 스택을 초기화
+
+    enqueue(&q, f0);// 스택에 추가
+    enqueue(&q, f1);// 스택에 추가
+
+    // 만약 1이거나 2이면
+    // dequeue 해서 순서대로 출력되도록 한다
     if (n == 1){
-        printf("fibo_que = %d\n", f0);
+        printf("fibo_que = %d\n", dequeue(&q));
     }
 
     else if (n == 2){
-        printf("fibo_que = %d\n", f1);
+        dequeue(&q);
+        printf("fibo_que = %d\n", dequeue(&q));
     }
 
-    else{
-        QueueType q;
-
-        init(&q);
-
-        enqueue(&q, f0);
-        enqueue(&q, f1);
-
+    else{   // 2 이상이면 2개의 수를 합해서 스택이 넣는 것을 반복한다.
         while( i++ != n-2 ){
             int nf = dequeue(&q) + peek(&q);
             enqueue(&q, nf);
@@ -122,7 +130,11 @@ int main(void){
 
     display(&q);
 
-    fibo_que(7);
+    int num;
+    printf("n을 입력하세요: ");
+    scanf("%d",&num);
+
+    fibo_que(num);
 
     return 0;
 }
