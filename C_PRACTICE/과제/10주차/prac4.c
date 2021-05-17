@@ -17,7 +17,7 @@ int main(void){
         printf("학번을 입력하시오: ");
         scanf("%d", &list[i].number);
         printf("이름: ");
-        scanf("%s", list[i].name);
+        scanf("%s", &list[i].name);
         printf("학점(실수): ");
         scanf("%d", &list[i].grade);
         printf("\n");

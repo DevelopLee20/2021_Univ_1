@@ -115,7 +115,7 @@ class Enemy extends Sprite{
 	}
 }
 
-public class week6{
+public class Week6{
     public static void main(String args[]){
     	
     	// 기본 맵 초기화
