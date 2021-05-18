@@ -25,13 +25,13 @@ ListNode* insert_first(ListNode *list, int val){
 
 }
 
-void print_list(ListNode *list){  // 애매함
+void print_list(ListNode *list){
 
     printf("|");
 
     ListNode *p = list;
 
-    while(p != NULL){
+    while(p != NULL){ // NULL을 만날때까지 반복
         printf(" %d |", p->data);
         p = p->link;
     }
@@ -48,7 +48,7 @@ ListNode* delete_first(ListNode *list){
     }
     else{
         remove = list;
-        list = remove->link;
+        list = remove->link; // list = list->link
         free(remove);
         
         return list;
@@ -57,12 +57,13 @@ ListNode* delete_first(ListNode *list){
 
 int main(void){
 
-    ListNode *list = NULL;
+    ListNode *list = NULL; // init()
 
     list = insert_first(list, 10);
     list = insert_first(list, 20);
     list = insert_first(list, 30);
 
+    printf("1) ");
     print_list(list);
 
     list = delete_first(list);
@@ -70,6 +71,7 @@ int main(void){
     list = insert_first(list, 50);
     list = delete_first(list);
 
+    printf("2) ");
     print_list(list);
 
     return 0;
