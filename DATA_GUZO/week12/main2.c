@@ -88,16 +88,41 @@ ListNode* consList(int array[], int size){
 
 ListNode* merge(ListNode *head1, ListNode *head2){
     
-    ListNode *merging = NULL;
     ListNode *list1 = head1;
     ListNode *list2 = head2;
+    ListNode *merging = NULL;
 
-    int index1=0, index2=0;
-
-    while( list1 != NULL || list1 != NULL ){
-        
+    if(list1->data > list2->data){
+        merging = insert_last(merging, list2->data);
+        list2 = list2->link;
+    }
+    else{
+        merging = insert_last(merging, list1->data);
+        list1 = list1->link;
     }
 
+    while( list1 != NULL && list2 != NULL ){
+        if(list1->data > list2->data){
+            merging = insert_last(merging, list2->data);
+            list2 = list2->link;
+        }
+        else{
+            merging = insert_last(merging, list1->data);
+            list1 = list1->link;
+        }
+    }
+
+    while( list1 != NULL ){
+        merging = insert_last(merging, list1->data);
+        list1 = list1->link;
+    }
+
+    while( list2 != NULL ){
+        merging = insert_last(merging, list2->data);
+        list2 = list2->link;
+    }
+
+    return merging;
 }
 
 int main(void){
@@ -113,6 +138,11 @@ int main(void){
 
     print_list(head1);
     print_list(head2);
+
+    ListNode *merging = NULL;
+    merging = merge(head1, head2);
+
+    print_list(merging);
 
     return 0;
 }

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define Array_Size 4
 
 typedef struct ListNode{
     int data;
@@ -17,14 +16,22 @@ ListNode* get_node(int item){
 
 }
 
+ListNode* insert_first(ListNode *list, int val){
+    
+    ListNode *node = get_node(val);
+    node->link = list;
+
+    return node;
+
+}
+
 // 새로 만듬
 ListNode* insert_last(ListNode *list, int val){
     
     ListNode *p = list;
 
     if(p == NULL){
-        ListNode *node = get_node(val);
-        p = node;
+        list = insert_first(p, val);
     }
 
     else{
@@ -36,15 +43,6 @@ ListNode* insert_last(ListNode *list, int val){
     }
 
     return list;
-}
-
-ListNode* insert_first(ListNode *list, int val){
-    
-    ListNode *node = get_node(val);
-    node->link = list;
-
-    return node;
-
 }
 
 void print_list(ListNode *list){
@@ -77,10 +75,6 @@ ListNode* delete_first(ListNode *list){
     }
 }
 
-// 배열과 배열의 크기를 매개변수로 받는다.
-// 요소 값을 포함하는 노드 생성
-// insert_first를 사용해서 삽입한다.
-// 구성된 리스트 반환
 ListNode* consList(int array[], int size){
 
     ListNode *list = NULL;
@@ -92,17 +86,69 @@ ListNode* consList(int array[], int size){
     return list;
 }
 
+ListNode* merge(ListNode *head1, ListNode *head2){
+    
+    ListNode *list1 = head1;
+    ListNode *list2 = head2;
+    ListNode *merging = NULL;
+
+    if(list1->data > list2->data){
+        merging = insert_last(list1);
+        list2 = list2->link;
+    }
+    else{
+        merging = list1;
+        list1 = list1->link;
+    }
+
+    while( list1 != NULL && list2 != NULL ){
+        print_list(merging);
+        if(list1->data > list2->data){
+            merging->link = list2;
+            list2 = list2->link;
+        }
+        else{
+            merging->link = list1;
+            list1 = list1->link;
+        }
+        merging = merging->link;
+    }
+
+    while( list1 != NULL ){
+        print_list(merging);
+        merging->link = list1;
+        list1 = list1->link;
+        merging = merging->link;
+    }
+
+    while( list2 != NULL ){
+        print_list(merging);
+        merging->link = list2;
+        list2 = list2->link;
+        merging = merging->link;
+    }
+
+    return merging;
+}
+
 int main(void){
     
-    ListNode *head = NULL;
+    ListNode *head1 = NULL;
+    ListNode *head2 = NULL;
 
-    int array[Array_Size] = {7,5,3,1};
+    int array1[4] = {7,5,3,1};
+    int array2[3] = {5,4,2};
 
-    print_list(head);
+    head1 = consList(array1, 4);
+    head2 = consList(array2, 3);
 
-    head = consList(array, Array_Size);
+    print_list(head1);
+    print_list(head2);
 
-    print_list(head);
+    ListNode *merging = NULL;
+    merging = merge(head1, head2);
+
+    print_list(merging);
 
     return 0;
 }
