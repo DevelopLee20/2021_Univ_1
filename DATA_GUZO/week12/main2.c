@@ -88,61 +88,48 @@ ListNode* consList(int array[], int size){
 
 ListNode* merge(ListNode *head1, ListNode *head2){
     
-    ListNode *list1 = head1;
-    ListNode *list2 = head2;
-    ListNode *merging = NULL;
+    ListNode *list1 = head1;    // (1)
+    ListNode *list2 = head2;    // (1)
+    ListNode *merging = NULL;   // (1)
 
-    if(list1->data > list2->data){
-        merging = insert_last(merging, list2->data);
-        list2 = list2->link;
-    }
-    else{
-        merging = insert_last(merging, list1->data);
-        list1 = list1->link;
-    }
-
-    while( list1 != NULL && list2 != NULL ){
-        if(list1->data > list2->data){
+    while( list1 != NULL && list2 != NULL ){ // (2)
+        if(list1->data > list2->data){ // (3)
             merging = insert_last(merging, list2->data);
             list2 = list2->link;
         }
-        else{
+        else{ // (3)
             merging = insert_last(merging, list1->data);
             list1 = list1->link;
         }
     }
 
-    while( list1 != NULL ){
+    while( list1 != NULL ){ // (4)
         merging = insert_last(merging, list1->data);
         list1 = list1->link;
     }
 
-    while( list2 != NULL ){
+    while( list2 != NULL ){ // (4)
         merging = insert_last(merging, list2->data);
         list2 = list2->link;
     }
 
-    return merging;
+    return merging; // (5)
 }
 
 int main(void){
     
-    ListNode *head1 = NULL;
-    ListNode *head2 = NULL;
+    ListNode *list1, *list2, *list;
+    int a[] = {7,5,3,1}, b[] = {5,4,2};
 
-    int array1[4] = {7,5,3,1};
-    int array2[3] = {5,4,2};
+    // 배열을 매개변수로 전달받아서 리스트 생성
+    list1 = consList(a, 4);
+    list2 = consList(b, 3);
 
-    head1 = consList(array1, 4);
-    head2 = consList(array2, 3);
+    // 리스트 합병
+    list = merge(list1, list2);
 
-    print_list(head1);
-    print_list(head2);
-
-    ListNode *merging = NULL;
-    merging = merge(head1, head2);
-
-    print_list(merging);
+    // 리스트 출력
+    print_list(list1); print_list(list2); print_list(list);
 
     return 0;
 }

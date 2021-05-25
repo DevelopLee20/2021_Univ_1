@@ -29,21 +29,21 @@ ListNode* insert_first(ListNode *list, int val){
 // 새로 만듬
 ListNode* insert_last(ListNode *list, int val){
     
-    ListNode *p = list;
+    ListNode *p = list; // (1)
 
-    if(p == NULL){
+    if(p == NULL){ // (2)
         list = insert_first(p, val);
     }
 
-    else{
+    else{ // (3)
         while(p->link != NULL){
             p = p->link;
         }
-        ListNode *node = get_node(val);
+        ListNode *node = get_node(val); // (4)
         p->link = node;
     }
 
-    return list;
+    return list; // (5)
 }
 
 void print_list(ListNode *list){
@@ -76,19 +76,15 @@ ListNode* delete_first(ListNode *list){
     }
 }
 
-// 배열과 배열의 크기를 매개변수로 받는다.
-// 요소 값을 포함하는 노드 생성
-// insert_first를 사용해서 삽입한다.
-// 구성된 리스트 반환
 ListNode* consList(int array[], int size){
 
-    ListNode *list = NULL;
+    ListNode *list = NULL; // (1)
 
-    while(size){
+    while(size){ // (2)
         list = insert_last(list, array[--size]);
     }
 
-    return list;
+    return list; // (3)
 }
 
 int main(void){
