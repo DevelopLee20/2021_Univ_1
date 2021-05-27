@@ -57,56 +57,56 @@ ListNode* delete_first(ListNode *list){
 
 int get_entry(ListNode *head, int index){
 
-    if(head == NULL){
-        fprintf(stderr, "[get_entry1] : list is empty");
+    if(head == NULL){ // (1)
+        fprintf(stderr, "[get_entry] : list is empty");
 
         return 1;
     }
 
-    else{
-        ListNode *p = head;
+    else{ // (2)
+        ListNode *p = head; // (3)
 
-        while( --index ){
+        while( --index ){ // (4)
             p = p->link;
 
-            if( p == NULL ){
-                fprintf(stderr, "[get_entry2] : list is shorter then index");
+            if( p == NULL ){ // (5)
+                fprintf(stderr, "[get_entry] : list is shorter then index");
                 
                 return 1;
             }
         }
 
-        return p->data;
+        return p->data; // (6)
     }
 }
 
 int list_sum(ListNode *list){
 
-    ListNode *p = list;
-    int sum = 0;
+    ListNode *p = list; // (1)
+    int sum = 0; // (2)
 
-    while(p != NULL){
+    while(p != NULL){ // (3)
         sum += p->data;
         p = p->link;
     }
 
-    return sum;
+    return sum; // (4)
 }
 
 ListNode* reverse(ListNode *head){
 
-    ListNode *list = head;
-    ListNode *reverse = NULL;
-    ListNode *swap;
+    ListNode *list = head; // (1)
+    ListNode *reverse = NULL; // (2)
+    ListNode *swap; // (3)
 
-    while(list != NULL){
-        swap = reverse;
-        reverse = list;
-        list = list->link;
-        reverse->link = swap;
+    while(list != NULL){ // (4)
+        swap = reverse;       // reverse의 상태를 저장
+        reverse = list;       // reverse에 list 상태를 저장
+        list = list->link;    // list를 다음 노드로 넘긴다.
+        reverse->link = swap; // 현재 리스트의 링크를 swap에 넘긴다.
     }
 
-    return reverse;
+    return reverse; // (5)
 }
 
 int main(void){
