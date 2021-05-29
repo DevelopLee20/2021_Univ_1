@@ -2,7 +2,9 @@
 #include <string.h>
 
 int main(void){
+
     FILE *fp;
+    
     char fname[128];
     char buffer[256];
     char word[256];
@@ -24,6 +26,7 @@ int main(void){
             printf("%s: %d 단어 %s이 발견되었습니다.\n", fname, line_num, word);
         }
     }
+
     fclose(fp);
 
     return 0;
