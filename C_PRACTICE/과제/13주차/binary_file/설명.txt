@@ -1,0 +1,2 @@
+binary.png -> 실행결과 출력창
+binary2.png -> student.dat 파일 생성 확인

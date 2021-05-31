@@ -1,0 +1,2 @@
+image.PNG 파일을 프로그램을 이용해 copy.PNG 파일을 생성했고,
+text.txt 파일을 프로그램을 이용해 copy.txt 파일을 생성했다.

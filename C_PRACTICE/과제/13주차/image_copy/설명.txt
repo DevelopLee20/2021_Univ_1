@@ -1,0 +1,1 @@
+image.PNG 파일을 copy.jpg 파일에 복사를 했다.
