@@ -16,7 +16,7 @@ ListNode* get_node(int data){
 
 ListNode* insert_last(ListNode *list, int data){
 
-    if(list == NULL){ // list가 초기상태일때 그냥 노드를 추가해줌
+    if(list == NULL){ // list가 초기상태일때 노드를 추가해줌
         list = get_node(data);
         list->link = list;
         return list;
@@ -39,31 +39,48 @@ void print_list(ListNode *list){
     printf("|");
 
     while(end != list){ // head까지 도착하면
-        printf(" %d |",end->data);
+        printf(" %2d |",end->data);
         end = end->link;
     }
     printf(" (Head) %d |\n",end->data); // head의 data 값을 출력한다.
 }
 
-ListNode* insert_between(ListNode *list, int data){
-
-}
-
 ListNode* sorted_insert(ListNode *list, int a){
 
-    if(list == NULL){
-        list = get_node(list, a);
+    // (1)
+    // 빈 리스트일 경우 단순 노드 추가
+    if(list == NULL){ 
+        list = get_node(a);
+        list->link = list;
 
-        return list
+        return list;
     }
 
-    ListNode *point = list->link;
-
-    while(point != list){
-        if( a > point->data ){
-
+    // (2)
+    // 리스트에 노드가 하나 밖에 없을 때
+    // 앞이나 뒤 중 선택해서 추가
+    else if(list->link == list){
+        if( list->data < a ){
+            list = insert_last(list, a);
+            return list;
         }
+        list = insert_last(list, a);
+        return list->link; // 앞 일 경우 head를 조정
     }
+    // (3)
+    ListNode *end = list; // list 포인터를 복사
+
+    // (4)
+    // 노드의 링크의 data 값을 하나씩 비교해서 값을 추가
+    do{
+        if(end->link->data >= a){
+            end = insert_last(end, a);
+            return list;
+        }
+        end = end->link;
+    } while(end != list); // (5)
+
+    list = insert_last(list, a);
 
     return list;
 }
