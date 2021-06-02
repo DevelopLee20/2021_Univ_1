@@ -33,12 +33,12 @@ void dinsert(DListNode *head, int data){
 
 void print_dlist(DListNode *head){
 
-    DListNode *end = head;
+    DListNode *end = head; // head 노드
 
-    end = end->rlink;
+    end = end->rlink; // head의 rlink 부터
 
     printf("|");
-    while( end != head ){
+    while( end != head ){ // head 노드가 나올때까지
         printf(" %d |", end->data);
         end = end->rlink;
     }

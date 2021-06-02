@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define SIZE 10
 
 typedef struct ListNode{
     int data;
@@ -7,28 +8,10 @@ typedef struct ListNode{
 } ListNode;
 
 ListNode* get_node(int data){
-
-    // 노드 동적 생성
     ListNode *node = (ListNode *)malloc(sizeof(ListNode));
-    node->data = data; // data 입력
+    node->data = data;
 
-    return node; // 생성된 노드 반환
-}
-
-ListNode* insert_first(ListNode *list, int data){
-
-    if(list == NULL){ // 초기상태일때 노드를 생성하고 종료
-        list = get_node(data);
-        list->link = list;
-        return list;
-    }
-
-    ListNode *node = get_node(data); // 노드 동적 생성
-
-    node->link = list->link;
-    list->link = node;
-
-    return list;
+    return node;
 }
 
 ListNode* insert_last(ListNode *list, int data){
@@ -59,20 +42,40 @@ void print_list(ListNode *list){
         printf(" %d |",end->data);
         end = end->link;
     }
-    printf(" %d |",end->data); // head의 data 값을 출력한다.
+    printf(" (Head) %d |\n",end->data); // head의 data 값을 출력한다.
+}
 
+ListNode* insert_between(ListNode *list, int data){
+
+}
+
+ListNode* sorted_insert(ListNode *list, int a){
+
+    if(list == NULL){
+        list = get_node(list, a);
+
+        return list
+    }
+
+    ListNode *point = list->link;
+
+    while(point != list){
+        if( a > point->data ){
+
+        }
+    }
+
+    return list;
 }
 
 int main(void){
 
-    ListNode *list = NULL;
+    ListNode* list = NULL;
+    int a[10] = {12,56,2,11,33,60,1,3,25,55};
 
-    list = insert_first(list, 10);
-    list = insert_first(list, 20);
-    list = insert_first(list, 30);
-
-    list = insert_last(list, 40);
-    list = insert_last(list, 50);
+    for(int i=0; i<SIZE; i++){
+        list = sorted_insert(list, a[i]);
+    }
 
     print_list(list);
 
