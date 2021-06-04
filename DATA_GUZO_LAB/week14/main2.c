@@ -19,19 +19,6 @@ TreeNode* get_node(int data){
     return node; // 생성된 노드 반환
 }
 
-int Make_Tree(TreeNode *Tree, int T[], int idx){
-
-    if(2*idx >= Tree_Size){
-        return 0;
-    }
-
-    Tree->left = get_node(T[2*idx]);
-    Tree->right = get_node(T[2*idx+1]);
-    Make_Tree(Tree->left, T, 2*idx);
-    Make_Tree(Tree->right, T, 2*idx+1);
-
-}
-
 TreeNode* cons_dir(){
 
     int T[Tree_Size] = {0,0,50,100,0,0,200,500};
