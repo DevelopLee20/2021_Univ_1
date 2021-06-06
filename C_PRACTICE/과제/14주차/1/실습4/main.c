@@ -1,3 +1,4 @@
+// 실습 4
 #include <stdio.h>
 #include "rect.h"
 

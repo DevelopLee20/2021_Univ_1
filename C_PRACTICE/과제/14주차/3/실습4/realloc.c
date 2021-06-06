@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int main(void){
+    
     printf("정수 2개를 저장할 공간이 필요 \n");
     int *list = (int *)malloc(sizeof(int)*2);
     int i;
