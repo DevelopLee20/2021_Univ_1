@@ -2,6 +2,7 @@
 #include <string.h>
 
 int main(void){
+    
     char filename[100];
     char s[100];
     int i;

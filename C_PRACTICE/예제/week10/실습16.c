@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int main(void){
+
     char s1[] = "100";
     char s2[] = "12.93";
     char buffer[100];
@@ -14,6 +15,6 @@ int main(void){
 
     sprintf(buffer, "%f", result);
     printf("연산 결과는 %s입니다.\n", buffer);
-    
+
     return 0;
 }

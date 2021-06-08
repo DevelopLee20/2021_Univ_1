@@ -9,6 +9,7 @@ struct student
 };
 
 int main(void){
+    
     struct student list[SIZE];
     int i;
 

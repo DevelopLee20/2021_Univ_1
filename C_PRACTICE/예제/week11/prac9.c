@@ -1,6 +1,6 @@
 #include <stdio.h> // 표준입출력 헤더파일
 
-// 열겨형 days 변수 SUN부터 1을 가진다.
+// 열겨형 days 변수 SUN부터 0을 가진다.
 enum days { SUN , MON , TUE , WED , THU , FRI , SAT };
 
 // 포인터 배열 선언

@@ -39,3 +39,10 @@ void float_print(){
     printf("%-10.3e\n",1.23456789);
     printf("\n");
 }
+
+int main(void){
+    flag();
+    field_gap();
+    precision();
+    float_print();
+}

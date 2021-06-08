@@ -1,5 +1,4 @@
-// #pragma once
-#include "rect.c"
+#pragma once
 struct rect
 {
     int x,y,w,h;
