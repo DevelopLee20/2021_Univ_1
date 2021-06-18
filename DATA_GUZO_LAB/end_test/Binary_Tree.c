@@ -33,6 +33,10 @@ int Make_Tree(TreeNode *Tree, int T[], int idx){
 
 }
 
+TreeNode* left_node_count(TreeNode *T){
+    
+}
+
 TreeNode* cons_dir(){
     
     // 트리의 배열 선언
