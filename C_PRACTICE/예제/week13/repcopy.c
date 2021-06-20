@@ -54,7 +54,7 @@ int main(void){
         }
 
         // txt파일의 한 줄씩 받아서 buffer에 복사
-        while(fgets(buffer, 100, fp1) != NULL){
+        while(fgets(buffer, 100, fp1) != NULL){ 
             fputs(buffer, fp2); // buffer 내용을 저장
         }
     }

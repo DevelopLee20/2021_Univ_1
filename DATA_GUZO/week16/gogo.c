@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+#include <math.h>
 #define MAX_SIZE 70
 
 typedef struct stack_type {
@@ -8,10 +10,14 @@ typedef struct stack_type {
     int top;
 } Stack_Type;
 
+typedef union{
+    int operand;
+    char operator;
+} element;
+
 typedef struct tree_node {
     int data;
-    struct tree_node *left;
-    struct tree_node *right;
+    struct tree_node *left, *right;
 } Tree_Node;
 
 void init(Stack_Type *s){
@@ -51,6 +57,7 @@ int peek(Stack_Type s){
 }
 
 void get_exp(char *exp){
+    printf("수   식: ");
     gets(exp);
 }
 
@@ -126,18 +133,127 @@ void postfix(char *exp, char *post){
             post[t_idx++] = exp[idx];
         
         idx++;
-
-        for(int i=0; i<s.top+1; i++){
-            printf("%c ",s.data[i]);
-        }
-
-        printf("\nD: %s\n",post);
     }
 
     while(!is_empty(s))
         post[t_idx++] = pop(&s);
 
     post[t_idx] = '\0';
+}
+
+Tree_Node* get_node(){
+
+    Tree_Node *node = (Tree_Node*)malloc(sizeof(Tree_Node));
+
+    node->left = NULL;
+    node->right = NULL;
+
+    return node;
+}
+
+typedef struct stack_type1 {
+    Tree_Node* data[MAX_SIZE];
+    int top;
+} StackType;
+
+void init1(StackType *s){
+    s->top = -1;
+}
+
+int is_empty1(StackType s){
+    return (s.top == -1);
+}
+
+Tree_Node* pop1(StackType *s){
+    if(is_empty1(*s)){
+        fprintf(stderr,"[POP] Stack is Empty\n");
+        exit(1);
+    }
+    return s->data[s->top--];
+}
+
+int is_full1(StackType s){
+    return (s.top == (MAX_SIZE - 1));
+}
+
+void push1(StackType *s, Tree_Node *val){
+    if(is_full1(*s)){
+        fprintf(stderr,"[PUSH] Stack is full\n");
+        return;
+    }
+    s->data[++(s->top)] = val;
+}
+
+Tree_Node* const_Etree(char *T){
+    
+    StackType s;
+    int idx = 0;
+
+    init1(&s);
+
+    while(T[idx] != '\0'){
+
+        Tree_Node *node = get_node();
+
+        if(isdigit(T[idx])){
+            node->data = T[idx] - '0';
+        }
+
+        else{
+            node->right = pop1(&s);
+            node->left = pop1(&s);
+            node->data = T[idx] - '0';
+        }
+        push1(&s, node);
+        idx++;
+    }
+    return pop1(&s);
+}
+
+Tree_Node* cons_exptree(char *post){
+
+    Tree_Node *t = const_Etree(post);
+
+    return t;
+}
+
+int eval(Tree_Node *T){
+
+    if (T == NULL){
+        return 0;
+    }
+
+    if (T->left == NULL && T->right == NULL){
+        return T->data;
+    }
+
+    else{
+
+        int oper_1 = eval(T->left);
+        int oper_2 = eval(T->right);
+
+        printf("D: %d %d\n",oper_1,oper_2);
+        
+        switch (T->data)
+        {
+        case '+':
+            return oper_1 + oper_2;
+            break;
+        case '-':
+            return oper_1 - oper_2;
+            break;
+        case '/':
+            return oper_1 / oper_2;
+            break;
+        case '*':
+            return oper_1 * oper_2;
+            break;
+        case '^':
+            return pow(oper_1,oper_2);
+            break;
+        }
+    }
+    return 0;
 }
 
 int main(void){
@@ -149,7 +265,11 @@ int main(void){
 
     postfix(exp, post);
 
-    printf("%s",post);
+    Tree_Node *t = cons_exptree(post);
+
+    printf("%d\n",t);
+
+    printf("계산 결과 : %d\n", eval(t));
 
     return 0;
 }
