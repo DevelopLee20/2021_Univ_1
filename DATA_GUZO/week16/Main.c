@@ -10,11 +10,6 @@ typedef struct stack_type {
     int top;
 } Stack_Type;
 
-typedef union{
-    int operand;
-    char operator;
-} element;
-
 typedef struct tree_node {
     int data;
     struct tree_node *left;
@@ -57,20 +52,19 @@ int peek(Stack_Type s){
     return s.data[s.top];
 }
 
-void get_exp(char *exp){
-    gets(exp);
+void get_exp(char *exp){ // exp 매개변수는 포인터로 받는다.
+    gets(exp); // gets를 사용해 수식을 입력받는다.
 }
 
 void postfix(char *exp, char *post){
 
-    int idx = 0, t_idx = 0;
-    char op;
+    int idx = 0, t_idx = 0; // 인덱스 변수
 
-    Stack_Type s;
+    Stack_Type s; // 스택을 선언
 
-    init(&s);
+    init(&s); // 스택을 초기화
 
-    while(exp[idx] != '\0'){
+    while(exp[idx] != '\0'){ // 수식 배열이 null이 될때까지 반복
 
         if( exp[idx] == '(' )
             push(&s, exp[idx]);
@@ -138,7 +132,7 @@ void postfix(char *exp, char *post){
     while(!is_empty(s))
         post[t_idx++] = pop(&s);
 
-    post[t_idx] = '\0';
+    post[t_idx] = '\0'; // 마지막에 null을 작성해서 끝을 알려준다.
 }
 
 Tree_Node* get_node(){
@@ -186,30 +180,31 @@ void push1(StackType *s, Tree_Node *val){
 
 Tree_Node* const_Etree(char *T){
     
-    StackType s;
-    int idx = 0;
+    StackType s; // 스택을 선언한다.
+
+    int idx = 0; // 인덱스 변수
     char number[10];
     int num_idx = 0;
     int num;
 
-    init1(&s);
+    init1(&s); // 스택 초기화
 
-    while(T[idx] != '\0'){
+    while(T[idx] != '\0'){ // 배열이 null을 만날때까지 반복
 
-        if(isdigit(T[idx])){
-            number[num_idx++] = T[idx];
+        if(isdigit(T[idx])){ // 요소가 숫자일 경우
+            number[num_idx++] = T[idx]; // number 배열에 추가
         }
 
-        else if(T[idx] == ' ' && num_idx != 0){
-            Tree_Node *node = get_node();
-            sscanf(number,"%d",&num);
-            node->data = num;
+        else if(T[idx] == ' ' && num_idx != 0){ // 요소가 공백이거나 숫자 인덱스가 0이 아니면
+            Tree_Node *node = get_node(); // 노드를 생성한 후
+            sscanf(number,"%d",&num); // 1자리수 이상의 숫자를
+            node->data = num; // node의 데이터에 저장한다.
             
-            for(int i=0; i<=num_idx; i++){
+            for(int i=0; i<=num_idx; i++){ // 배열을 초기화
                 number[i] = '\0';
             }
-            num_idx = 0;
-            push1(&s, node);
+            num_idx = 0; // 인덱스를 초기화
+            push1(&s, node); // 생성한 노드를 스택에 push
         }
 
         else if(T[idx] == ' '){}
@@ -217,31 +212,31 @@ Tree_Node* const_Etree(char *T){
         else{
 
             if(num_idx != 0){
-                Tree_Node *node = get_node();
-                sscanf(number,"%d",&num);
-                node->data = num;
+                Tree_Node *node = get_node(); // 노드를 생성
+                sscanf(number,"%d",&num); // 1자리수 이상의 숫자를
+                node->data = num; // node의 데이터에 저장한다.
                 
-                for(int i=0; i<=num_idx; i++){
+                for(int i=0; i<=num_idx; i++){ // 배열을 초기화
                     number[i] = '\0';
                 }
-                num_idx = 0;
-                push1(&s, node);
+                num_idx = 0; // 인덱스를 초기화
+                push1(&s, node); // 생성한 노드를 스택에 push
             }
 
-            Tree_Node *node = get_node();
-            node->right = pop1(&s);
+            Tree_Node *node = get_node(); // 노드를 생성
+            node->right = pop1(&s); //
             node->left = pop1(&s);
-            node->data = T[idx];
-            push1(&s, node);
+            node->data = T[idx]; // 연산자를 data에 대입
+            push1(&s, node); 
         }
-        idx++;
+        idx++; // 배열 인덱스를 1 증가
     }
-    return pop1(&s);
+    return pop1(&s); // 생성된 트리를 반환한다.
 }
 
 Tree_Node* cons_exptree(char *post){
 
-    Tree_Node *t = const_Etree(post);
+    Tree_Node *t = const_Etree(post); // 생성된 수식 트리 반환
 
     return t;
 }
@@ -253,15 +248,15 @@ int eval(Tree_Node *T){
     }
 
     if (T->left == NULL && T->right == NULL){
-        return T->data;
+        return T->data; // 잎노드일 경우 값을 반환
     }
 
     else{
 
-        int oper_1 = eval(T->left);
-        int oper_2 = eval(T->right);
+        int oper_1 = eval(T->left);  // 첫번째 숫자를 저장
+        int oper_2 = eval(T->right); // 두번째 숫자를 저장
         
-        switch (T->data)
+        switch (T->data) // 데이터(연산자)에 따라 다른 결과를 반환
         {
         case '+':
             return oper_1 + oper_2;
@@ -276,7 +271,7 @@ int eval(Tree_Node *T){
             return oper_1 * oper_2;
             break;
         case '^':
-            return pow(oper_1,oper_2);
+            return pow(oper_1,oper_2); // 추가한 제곱 연산자
             break;
         }
     }
